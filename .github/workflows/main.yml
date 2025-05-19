@@ -22,7 +22,8 @@ jobs:
         run: npm ci
 
       - name: Save Google service account key
-        run: echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}" > gdrive-key.json
+        run: echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}' > gdrive-key.json
+
 
       - name: Run export script
         run: npx ts-node scripts/export-to-gdrive.ts
