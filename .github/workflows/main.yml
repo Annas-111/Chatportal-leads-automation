@@ -2,8 +2,8 @@ name: Daily Export to Google Drive
 
 on:
   schedule:
-    - cron: '10 20 * * *'  # 20:10 UTC = 1:10 AM Pakistan time next day
-  workflow_dispatch:     # 🔘 Allows manual triggering from GitHub UI
+    - cron: '20 20 * * *'  # 🕐 1:20 AM Pakistan time daily
+  workflow_dispatch:
 
 jobs:
   run-export-script:
@@ -25,7 +25,7 @@ jobs:
         run: echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}" > gdrive-key.json
 
       - name: Run export script
-        run: node index.js
+        run: npx ts-node scripts/export-to-gdrive.ts
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
