@@ -16,22 +16,10 @@ console.log('🔍 key path:', keyPath);
 console.log('🔍 file exists?', fs.existsSync(keyPath));
 console.log('🔍 head of file:', fs.readFileSync(keyPath, 'utf8').slice(0, 30));
 
-const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON!;
-if (!raw) {
-  throw new Error('GOOGLE_SERVICE_ACCOUNT_KEY_JSON is not set!');
-}
-let creds;
-try {
-  creds = JSON.parse(raw);
-} catch (e) {
-  console.error('Failed to parse JSON from env:', e);
-  throw e;
-}
-
 // Google Drive service account auth
 const auth = new google.auth.GoogleAuth({
-  credentials: creds,
-  scopes: ['https://www.googleapis.com/auth/drive.file'],
+  keyFilename: process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH,  // './gdrive-key.json'
+  scopes: ['https://www.googleapis.com/auth/drive.file']
 });
 
 const drive = google.drive({ version: 'v3', auth })
