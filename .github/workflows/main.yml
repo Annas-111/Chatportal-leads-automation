@@ -2,7 +2,7 @@ name: Daily Export to Google Drive
 
 on:
   schedule:
-    - cron: '12 22 * * *'   # 3:12 AM Pakistan time
+    - cron: '*/2 * * * *'   # 3:12 AM Pakistan time
   workflow_dispatch:
 
 
