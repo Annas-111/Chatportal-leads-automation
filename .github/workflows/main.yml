@@ -2,7 +2,7 @@ name: Daily Export to Google Drive
 
 on:
   schedule:
-    - cron: '43 20 * * *'  # 🕐 1:20 AM Pakistan time daily
+    - cron: '54 20 * * *'  # 🕐 1:20 AM Pakistan time daily
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,9 @@ jobs:
         run: npm ci
 
       - name: Save Google service account key
-        run: echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}' > gdrive-key.json
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}" > gdrive-key.json
+
 
 
       - name: Run export script

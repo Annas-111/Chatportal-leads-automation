@@ -13,9 +13,10 @@ const supabase = createClient(
 
 // Google Drive service account auth
 const auth = new google.auth.GoogleAuth({
-  keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!,
+  keyFilename: './gdrive-key.json',           // matches the file you just wrote
   scopes: ['https://www.googleapis.com/auth/drive.file']
-})
+});
+
 const drive = google.drive({ version: 'v3', auth })
 
 const LAST_EXPORT_FILE = path.resolve(__dirname, 'last-export.json')
