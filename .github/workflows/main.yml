@@ -1,0 +1,35 @@
+name: Daily Export to Google Drive
+
+on:
+  schedule:
+    - cron: '5 1 * * *'  # 🕐 1:05 AM UTC every day
+  workflow_dispatch:     # 🔘 Allows manual triggering from GitHub UI
+
+jobs:
+  run-export-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Save Google service account key
+        run: echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}" > gdrive-key.json
+
+      - name: Run export script
+        run: node index.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GOOGLE_SERVICE_ACCOUNT_KEY_PATH: ./gdrive-key.json
+          AGENTS_FOLDER_ID: ${{ secrets.AGENTS_FOLDER_ID }}
+          CONTACT_FORM_FOLDER_ID: ${{ secrets.CONTACT_FORM_FOLDER_ID }}
+          CHATBOTS_FOLDER_ID: ${{ secrets.CHATBOTS_FOLDER_ID }}
