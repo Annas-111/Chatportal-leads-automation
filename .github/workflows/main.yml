@@ -2,8 +2,9 @@ name: Daily Export to Google Drive
 
 on:
   schedule:
-    - cron: '*/2 * * * *'   # every 2 minutes UTC
-  workflow_dispatch: # manual trigger
+    - cron: '* * * * *'
+  workflow_dispatch:
+
 
 
 jobs:
