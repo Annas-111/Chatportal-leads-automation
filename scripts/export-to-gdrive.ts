@@ -11,10 +11,27 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!;
+console.log('🔍 key path:', keyPath);
+console.log('🔍 file exists?', fs.existsSync(keyPath));
+console.log('🔍 head of file:', fs.readFileSync(keyPath, 'utf8').slice(0, 30));
+
+const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON!;
+if (!raw) {
+  throw new Error('GOOGLE_SERVICE_ACCOUNT_KEY_JSON is not set!');
+}
+let creds;
+try {
+  creds = JSON.parse(raw);
+} catch (e) {
+  console.error('Failed to parse JSON from env:', e);
+  throw e;
+}
+
 // Google Drive service account auth
 const auth = new google.auth.GoogleAuth({
-  keyFilename: './gdrive-key.json',           // matches the file you just wrote
-  scopes: ['https://www.googleapis.com/auth/drive.file']
+  credentials: creds,
+  scopes: ['https://www.googleapis.com/auth/drive.file'],
 });
 
 const drive = google.drive({ version: 'v3', auth })
