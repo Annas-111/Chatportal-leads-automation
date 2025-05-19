@@ -16,6 +16,10 @@ yarn-error.log*
 # OS files
 .DS_Store
 
+# ignore this specific keyfile
+supabase-test-458622-29941f7d6f3e.json
+
+
 # Build outputs
 dist/
 build/
