@@ -11,22 +11,15 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!;
-console.log('🔍 GOOGLE_SERVICE_ACCOUNT_KEY_PATH:', keyPath);
-console.log('🔍 existsSync:', fs.existsSync(keyPath));
-if (fs.existsSync(keyPath)) {
-  // show first 100 chars so we confirm the JSON is in there
-  console.log('🔍 head of file:\n', fs.readFileSync(keyPath, 'utf8').slice(0, 100));
-} else {
-  console.error('❌ Key file not found at', keyPath);
-}
+const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!
+console.log('🔍 keyPath exists?', fs.existsSync(keyPath))
 
-// now use the file-based constructor
 const auth = new google.auth.GoogleAuth({
-  keyFilename: keyPath,                        // point at the file
+  keyFilename: keyPath,
   scopes: ['https://www.googleapis.com/auth/drive.file'],
-});
-const drive = google.drive({ version: 'v3', auth });
+})
+const drive = google.drive({ version: 'v3', auth })
+
 
 const LAST_EXPORT_FILE = path.resolve(__dirname, 'last-export.json')
 
