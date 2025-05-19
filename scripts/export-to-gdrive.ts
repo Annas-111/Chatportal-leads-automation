@@ -11,24 +11,6 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-// const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!
-// const creds = {
-//   type: "service_account",
-//   project_id: "supabase-test-458622",
-//   private_key_id: "29941f7d6f3e45fe30b47b8d21c0f263a187e36d",
-//   private_key: `-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDvy52VJ5VueRQV\nkQkIYvUXfs3RvGke9+r1cJVC67RuNT3m5DCPFT3/g/JtPnfihEpQb5ahC+MS/qr3\nww2hEzFvw6OSMWvSE/sRgp/WqJUJIg5gQ4CoLlsdQmdG+xzRs9iya+fP6PZYuGWC\nczCIYiq94sWIzv8ItS2zGvQuUHdrW0HIl0C9LbOtRGbEg8pciv7LA1mzoC/gjlzs\nm/NTSMWwentaQUFMoZlYhxxzI1BT/n/qDKIQ7YfHyLDQGARuvUIGQHTuvGGPbEs3\nvXtyjJ060dx1n/Vu8K4v3FNpPFiQOFBkKybTXUXsi9WXMv7zagVE6PZxTx2ZrMBt\nzF5ksViPAgMBAAECggEACBLMau2qv83uya0Y50Hhq5lW16VmyqahMANK2zZxXDaJ\nr4DmS6L08+ne2yO7yJIYqG2hXim2yvhtDCtyhYZOZ0toce8dCLUoglXqCMGjRuvx\nHPeY2NC6u5j1PjQNK9hIxvUQGHVo+eK3dDVpoGXht4Pvj6QcfRAQilOxfe+ynZgj\nxteom+c18N7HHBAuWDTORlDuhbUPfBHhKgDgqC7BbOB4GS32igsuilia+Ux86UlY\nHReG9YDWngnmlqAsM1wZX3cQ83pzsymllnlE2DH9cE+zyBnJ8Kl99o/6JibsfSzl\nrtGXScrlGcPSKRS5gevTADnY1gMuB+/KCc9QcTNf8QKBgQD7dnwyb33M81uCwzLt\n+ZE3YL5AvyHRLb5BGbFspQIlvb3WFdXqMbElqspbQSv+kAMiiNlnr/Mo7AV+r7/5\nBFPhSm22AVNRbE0NQhHhmvNOlLnnCSzCDU4PNDhaAXgLx6floZHGIHsgZRXNgrNV\npOTSFLayDItV6oXocuXhXGyG3wKBgQD0HzzwiXVx4kJ2CSvrQBgQB6+ubom3urfV\nS/qiZxtz2EvgTfvgeR9fXyyeodCLR7GlJWABlUTXiM4z+sfoqeX1DxNDXCned4uE\nt+flFfqw8QbVtvw3cqPh+ouV2C67kmVGEpBQ0UJ0z5O91o6PTRbuYdAbOPcOYqgm\n3N44wJbUUQKBgQDS5/qc9qPlnQrYrs1tiU9ByjNn7Kb5YctboKgN/ovBidXJ1ICZ\nL1prxEZ6qTu0A6eNdIgbjhh87xBgxBlYS0frAljoOU5fUV2CzDJhLWv6MYWGgEx4\n6V3aJKtK2kaMYsWwNIYmTaHXdtEFkCTHpUiB5vugdCL9SXlMj+m8zZ78swKBgDhA\nHm2abtpv9Tp3gIwzd5fx/XQm+krAlm1qlXToZzX5R/qGXZxqrGTwbDqdNI1zVqak\nBww2VeeIGWN2zKt6wocGEz05NliRmS9apO9vchVlZFrIUDOCkeqXLaS4bIRCBl3w\nFxrYLQT3c6aRksXIUJlbJnWvWZYR+4cA65+OGPMRAoGBAN95SPVrxlDYFZ05MSBU\ndhHSVZWZbzKiqJuso4GzPbQVwQyZQ2hWuIhltkg3r+5H0FwhKALjPeYMPEuP9q6L\n9Mo3Bt7qiegV3PnX5keXeAMdkdN9ocM54C0PwWM/8zpHpq4I42imxtEoHy/7GjMd\nVpZg/Yw4fhaL9NYX8ujKRGrQ\n-----END PRIVATE KEY-----\n`,
-//   client_email: "gdrive-exporter@supabase-test-458622.iam.gserviceaccount.com",
-//   client_id: "101355721592912771983",
-//   auth_uri: "https://accounts.google.com/o/oauth2/auth",
-//   token_uri: "https://oauth2.googleapis.com/token",
-//   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-//   client_x509_cert_url:
-//     "https://www.googleapis.com/robot/v1/metadata/x509/gdrive-exporter%40supabase-test-458622.iam.gserviceaccount.com",
-//   universe_domain: "googleapis.com"
-// };
-
-
-
 const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON;
 if (!raw) throw new Error('Missing GOOGLE_SERVICE_ACCOUNT_KEY_JSON env');
 
