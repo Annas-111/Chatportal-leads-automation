@@ -11,7 +11,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!
+// const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!
 const creds = {
   type: "service_account",
   project_id: "supabase-test-458622",
