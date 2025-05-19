@@ -21,9 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Save Google service account key
+        run: echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}" > gdrive-key.json
+
       - name: Run export script
         run: node index.js
-
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
@@ -31,6 +33,3 @@ jobs:
           AGENTS_FOLDER_ID: ${{ secrets.AGENTS_FOLDER_ID }}
           CONTACT_FORM_FOLDER_ID: ${{ secrets.CONTACT_FORM_FOLDER_ID }}
           CHATBOTS_FOLDER_ID: ${{ secrets.CHATBOTS_FOLDER_ID }}
-
-      - name: Save Google service account key
-        run: echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY_JSON }}" > gdrive-key.json
