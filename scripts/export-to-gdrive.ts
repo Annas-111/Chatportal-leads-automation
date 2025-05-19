@@ -14,6 +14,11 @@ const supabase = createClient(
 const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH!
 console.log('🔍 keyPath exists?', fs.existsSync(keyPath))
 
+
+console.log('📂 cwd:', process.cwd());
+console.log('📂 files:', fs.readdirSync('.'));
+console.log('🔍 keyPath exists?', fs.existsSync(keyPath));
+console.log('🔍 file head:', fs.readFileSync(keyPath, 'utf8').slice(0, 200));
 const auth = new google.auth.GoogleAuth({
   keyFilename: keyPath,
   scopes: ['https://www.googleapis.com/auth/drive.file'],
