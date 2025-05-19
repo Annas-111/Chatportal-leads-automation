@@ -29,11 +29,11 @@ const supabase = createClient(
 
 
 
-const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON
-if (!raw) {
-  throw new Error('Missing GOOGLE_SERVICE_ACCOUNT_KEY_JSON')
-}
-const creds = JSON.parse(raw)
+const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_JSON;
+if (!raw) throw new Error('Missing GOOGLE_SERVICE_ACCOUNT_KEY_JSON env');
+
+const decoded = Buffer.from(raw, 'base64').toString('utf-8');
+const creds = JSON.parse(decoded);
 
 // Authenticate to Google Drive
 const auth = new google.auth.GoogleAuth({
