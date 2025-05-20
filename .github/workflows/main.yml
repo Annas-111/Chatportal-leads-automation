@@ -1,11 +1,9 @@
 name: Daily Export to Google Drive
 
 on:
-  # schedule:
-  #   - cron: '* * * * *'
+  schedule:
+    - cron: '*/2 * * * *'
   workflow_dispatch:
-
-
 
 jobs:
   run-export-script:
